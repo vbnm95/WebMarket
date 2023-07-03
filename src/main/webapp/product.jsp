@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=utf-8" %>
 <%@ page import="dto.Product"%>
 <%@ page import="dto.ProductRepository"%>
+<%@ page errorPage="exceptionNoProductID.jsp"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <jsp:useBean id="productDTO" class="dto.ProductRepository" scope="session" />
 
@@ -9,6 +10,15 @@
 <head>
 <link rel="stylesheet" href="./resources/css/bootstrap.min.css">
 <title>상품 상세 정보</title>
+<script type="text/javascript">
+	function addToCart() {
+		if(confirm("상품을 장바구니에 추가하시겠습니까?")) {
+			document.addForm.submit();
+		} else {
+			document.addForm.reset();
+		}
+	}
+</script>
 </head>
 <body>
 	<jsp:include page="menu.jsp" />
@@ -26,7 +36,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-5">
-				<img src="c:/upload/<%=product.getFilename() %>" style="width: 100%">
+				<img src="/Upload/<%=product.getFilename() %>" style="width: 100%">
 			</div>
 			<div class="col-md-6">
 				<h3><%=product.getPname() %></h3>
@@ -38,8 +48,11 @@
 				<p> <b>재 고 수 :</b><fmt:formatNumber value="<%=product.getUnitsInStock() %>" type="number" />
 				<h4><fmt:formatNumber value="<%=product.getUnitPrice() %>" type="number" /> 원</h4>
 				
-				<p> <a href="#" class="btn btn-info"> 상품 주문 &raquo;</a>
-				<a href="./products.jsp" class="btn btn-secondary"> 상품 목록 </a>
+				<p> <form name="addForm" action="./addCart.jsp?id=<%=product.getProductID() %>" method="post">
+					<a href="#" class="btn btn-info" onclick="addToCart()"> 상품 주문 &raquo;</a>
+					<a href="./cart.jsp" class="btn btn-warning"> 장바구니 &raquo;</a>					
+					<a href="./products.jsp" class="btn btn-secondary"> 상품 목록 </a>
+				</form>
 			</div>
 		</div>
 		<hr>
