@@ -42,7 +42,7 @@
 				<h3><%=product.getPname() %></h3>
 				<p><%=product.getDescription() %>
 				<p><fmt:formatNumber value="<%=product.getUnitPrice() %>" type="number" /> 원
-				<p> <a href="./product.jsp?id=<%=product.getProductID() %>" class="btn btn-secondary" role="button"> 상세 정보 &raquo;</a>
+				<p> <a href="./product.jsp?id=<%=product.getProductId() %>" class="btn btn-secondary" role="button"> 상세 정보 &raquo;</a>
 			</div>
 			<%
 				}

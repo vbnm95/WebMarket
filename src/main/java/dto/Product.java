@@ -6,7 +6,7 @@ public class Product implements Serializable {
 	
 	private static final long serialVersionUID = -4274700572038677000L;
 	
-	private String productID;		// 상품 아이디
+	private String productId;		// 상품 아이디
 	private String pname;			// 상품명
 	private Integer unitPrice;		// 상품 가격
 	private String description;		// 상품 설명
@@ -22,16 +22,16 @@ public class Product implements Serializable {
 	}
 	
 	public Product(String productId, String pname, Integer unitPrice) {
-		this.productID = productId;
+		this.productId = productId;
 		this.pname = pname;
 		this.unitPrice = unitPrice;
 	}
 	
-	public String getProductID() {
-		return productID;
+	public String getProductId() {
+		return productId;
 	}
-	public void setProductID(String productID) {
-		this.productID = productID;
+	public void setProductId(String productId) {
+		this.productId = productId;
 	}
 	public String getPname() {
 		return pname;

@@ -1,7 +1,7 @@
 <%@ page contentType="text/html; charset=utf-8" %>
 <%@ page import="dto.Product"%>
 <%@ page import="dto.ProductRepository"%>
-<%@ page errorPage="exceptionNoProductID.jsp"%>
+<%@ page errorPage="exceptionNoProductId.jsp"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <jsp:useBean id="productDTO" class="dto.ProductRepository" scope="session" />
 
@@ -31,7 +31,7 @@
 		String id = request.getParameter("id");
 		
 		ProductRepository dto = ProductRepository.getInstance();
-		Product product = dto.getProcutByID(id);
+		Product product = dto.getProcutById(id);
 	%>
 	<div class="container">
 		<div class="row">
@@ -42,13 +42,13 @@
 				<h3><%=product.getPname() %></h3>
 				<p> <%=product.getDescription() %>
 				<p> <b>상품 코드 : </b><span class="badge badge-danger">
-					<%=product.getProductID() %></span>
+					<%=product.getProductId() %></span>
 				<p> <b>제 조 사  :</b><%=product.getManufacturer() %>
 				<p> <b>분    류 :</b><%=product.getCategory() %>
 				<p> <b>재 고 수 :</b><fmt:formatNumber value="<%=product.getUnitsInStock() %>" type="number" />
 				<h4><fmt:formatNumber value="<%=product.getUnitPrice() %>" type="number" /> 원</h4>
 				
-				<p> <form name="addForm" action="./addCart.jsp?id=<%=product.getProductID() %>" method="post">
+				<p> <form name="addForm" action="./addCart.jsp?id=<%=product.getProductId() %>" method="post">
 					<a href="#" class="btn btn-info" onclick="addToCart()"> 상품 주문 &raquo;</a>
 					<a href="./cart.jsp" class="btn btn-warning"> 장바구니 &raquo;</a>					
 					<a href="./products.jsp" class="btn btn-secondary"> 상품 목록 </a>

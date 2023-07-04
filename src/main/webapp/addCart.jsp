@@ -12,16 +12,16 @@
 	
 	ProductRepository dto = ProductRepository.getInstance();
 	
-	Product product = dto.getProcutByID(id);
+	Product product = dto.getProcutById(id);
 	if(product == null) {
-		response.sendRedirect("exceptionNoProductID.jsp");
+		response.sendRedirect("exceptionNoProductId.jsp");
 	}
 	
 	ArrayList<Product> goodsList = dto.getAllProducts();
 	Product goods = new Product();
 	for(int i=0; i<goodsList.size(); i++) {
 		goods = goodsList.get(i);
-		if(goods.getProductID().equals(id)){
+		if(goods.getProductId().equals(id)){
 			break;
 		}
 	}
@@ -36,7 +36,7 @@
 	Product goodsQnt = new Product();
 	for(int i=0; i<list.size(); i++) {
 		goodsQnt = list.get(i);
-		if(goodsQnt.getProductID().equals(id)) {
+		if(goodsQnt.getProductId().equals(id)) {
 			cnt++;
 			int orderQuantity = goodsQnt.getQuantity() + 1;
 			goodsQnt.setQuantity(orderQuantity);

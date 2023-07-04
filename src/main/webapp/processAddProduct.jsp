@@ -16,7 +16,7 @@
 	
 	MultipartRequest multi = new MultipartRequest(request, realFolder, maxSize, encType, new DefaultFileRenamePolicy());
 	
-	String productID = multi.getParameter("productID");
+	String productId = multi.getParameter("productId");
 	String name = multi.getParameter("name");
 	String unitPrice = multi.getParameter("unitPrice");
 	String description = multi.getParameter("description");
@@ -48,7 +48,7 @@
 	ProductRepository dto = ProductRepository.getInstance();
 	
 	Product newProduct = new Product();
-	newProduct.setProductID(productID);
+	newProduct.setProductId(productId);
 	newProduct.setPname(name);
 	newProduct.setUnitPrice(price);	
 	newProduct.setDescription(description);

@@ -8,7 +8,7 @@
 <head>
 <link rel="stylesheet" href="./resources/css/bootstrap.min.css" />
 <%
-	String cartID = session.getId();
+	String cartId = session.getId();
 %>
 <title>장바구니</title>
 </head>
@@ -23,8 +23,8 @@
 		<div class="row">
 			<table width="100%">
 				<tr>
-					<td align="left"><a href="./deleteCart.jsp?cartID=<%=cartID %>" class="btn btn-danger">삭제하기</a></td>
-					<td align="right"><a href="#" class="btn btn-success">주문하기</a></td>
+					<td align="left"><a href="./deleteCart.jsp?cartId=<%=cartId %>" class="btn btn-danger">삭제하기</a></td>
+					<td align="right"><a href="./shippingInfo.jsp?cartId=<%=cartId %>" class="btn btn-success">주문하기</a></td>
 				</tr>
 			</table>	
 		</div>
@@ -51,13 +51,13 @@
 						sum = sum + total;
 				%>
 				<tr>
-					<td><%=product.getProductID() %> - <%=product.getPname() %></td>
+					<td><%=product.getProductId() %> - <%=product.getPname() %></td>
 					<!-- td><%=product.getUnitPrice() %></td-->
 					<td><fmt:formatNumber value="<%=product.getUnitPrice() %>" type="number" /></td>
 					<td><%=product.getQuantity() %></td>
 					<!-- td><%=total %></td-->
 					<td><fmt:formatNumber value="<%=total %>" type="number" /></td>
-					<td><a href="./removeCart.jsp?id=<%=product.getProductID() %>" class="badge badge-danger">삭제</a></td>
+					<td><a href="./removeCart.jsp?id=<%=product.getProductId() %>" class="badge badge-danger">삭제</a></td>
 				</tr>
 				<%
 					}

@@ -25,9 +25,9 @@
 		</div>
 		<form name="newProduct" action="./processAddProduct.jsp" class="form-horizontal" method="post" enctype="multipart/form-data">
 			<div class="form-group row">
-				<label class="col-sm-2"><fmt:message key="productID" /></label>
+				<label class="col-sm-2"><fmt:message key="productId" /></label>
 				<div class="col-sm-3">
-					<input type="text" id="productID" name="productID" class="form-control" >
+					<input type="text" id="productId" name="productId" class="form-control" >
 				</div>
 			</div>
 			<div class="form-group row">

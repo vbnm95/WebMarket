@@ -3,7 +3,7 @@
 <%@ page import="dto.ProductRepository" %>
 
 <%
-	String id = request.getParameter("cartID");
+	String id = request.getParameter("cartId");
 
 	if(id == null || id.trim().equals("")) {
 		response.sendRedirect("cart.jsp");

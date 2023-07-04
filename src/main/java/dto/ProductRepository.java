@@ -48,18 +48,18 @@ public class ProductRepository {
 	}
 	
 	//상품 ID를 받아서 Product 객체를 리턴하는 메소드
-	public Product getProcutByID(String productID) {
-		Product productByID = null;
+	public Product getProcutById(String productId) {
+		Product productById = null;
 		
 		for(int i=0; i<listOfProducts.size(); i++) {
 			Product product = listOfProducts.get(i);
-			if(product != null && product.getProductID() != null && product.getProductID().equals(productID)) {
-				productByID = product;
+			if(product != null && product.getProductId() != null && product.getProductId().equals(productId)) {
+				productById = product;
 				break;
 			}
 		}
 		
-		return productByID;
+		return productById;
 	}
 	
 	//새로운 상품 정보를 등록하는 메소드
