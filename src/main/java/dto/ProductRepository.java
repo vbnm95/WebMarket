@@ -2,7 +2,6 @@ package dto;
 
 import java.util.ArrayList;
 
-// 상품 데이터 접근 클래스
 public class ProductRepository {
 	
 	private ArrayList<Product> listOfProducts = new ArrayList<Product>();
@@ -42,12 +41,10 @@ public class ProductRepository {
 		listOfProducts.add(tablet);
 	}
 	
-	//상품 목록을 가져오는 메소드
 	public ArrayList<Product> getAllProducts() {
 		return listOfProducts;
 	}
 	
-	//상품 ID를 받아서 Product 객체를 리턴하는 메소드
 	public Product getProcutById(String productId) {
 		Product productById = null;
 		
@@ -62,7 +59,6 @@ public class ProductRepository {
 		return productById;
 	}
 	
-	//새로운 상품 정보를 등록하는 메소드
 	public void addProduct(Product product) {
 		listOfProducts.add(product);	
 	}

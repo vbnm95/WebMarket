@@ -1,9 +1,9 @@
 <%@ page contentType="text/html; charset=utf-8" %>
 <%@ page import="com.oreilly.servlet.*" %>
 <%@ page import="com.oreilly.servlet.multipart.*" %>
-<%@ page import="dto.Product" %>
-<%@ page import="dto.ProductRepository" %>
 <%@ page import="java.io.*, java.util.*" %>
+<%@ page import="java.sql.*" %>
+<%@ include file="dbconn.jsp" %>
 
 <%-- 신규 상품 등록 처리 페이지 --%>
 <%
@@ -35,30 +35,37 @@
 	
 	long stock;
 	
-	if(unitsInStock.isEmpty())
+	if(unitsInStock.isEmpty()) {
 		stock = 0L;
-	else
+	} else {
 		stock = Long.valueOf(unitsInStock);
+		System.out.println(stock);
+	}
 	
 	
 	Enumeration<String> files = multi.getFileNames();
 	String fname = files.nextElement();
 	String fileName = multi.getFilesystemName(fname);
 	
-	ProductRepository dto = ProductRepository.getInstance();
+	PreparedStatement pstmt = null;
 	
-	Product newProduct = new Product();
-	newProduct.setProductId(productId);
-	newProduct.setPname(name);
-	newProduct.setUnitPrice(price);	
-	newProduct.setDescription(description);
-	newProduct.setManufacturer(manufacturer);
-	newProduct.setCategory(category);
-	newProduct.setUnitsInStock(stock);
-	newProduct.setCondition(condition);
-	newProduct.setFilename(fileName);
+	String sql = "insert into product values(?, ?, ?, ?, ?, ?, ?, ?, ?)";
+	pstmt = conn.prepareStatement(sql);
+	pstmt.setString(1, productId);
+	pstmt.setString(2, name);
+	pstmt.setInt(3, price);
+	pstmt.setString(4, description);
+	pstmt.setString(5, category);
+	pstmt.setString(6, manufacturer);
+	pstmt.setLong(7, stock);
+	pstmt.setString(8, condition);
+	pstmt.setString(9, fileName);
+	pstmt.executeUpdate();
 	
-	dto.addProduct(newProduct);
+	if(pstmt != null)
+			pstmt.close();
+	if(conn != null)
+		conn.close();
 	
 	response.sendRedirect("products.jsp");
 		

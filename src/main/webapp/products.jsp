@@ -1,12 +1,7 @@
 <%@ page contentType="text/html; charset=utf-8" %>
-<%@ page import="java.util.ArrayList" %>
-<%@ page import="dto.Product" %>
-<%@ page import="dto.ProductRepository" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page import="java.sql.*" %>
 
-<jsp:useBean id="productDTO" class="dto.ProductRepository" scope="session" />
-
-<%-- 상품 목록 페이지 --%>
 <html>
 <head>
 <link rel="stylesheet" href="./resources/css/bootstrap.min.css">
@@ -19,34 +14,36 @@
 			<h1 class="display-3">상품 목록</h1>
 		</div>
 	</div>
-	<%--
-		ArrayList<Product> listOfProducts = productDTO.getAllProducts();
-	--%>
-	
-	<%
-		ProductRepository dto = ProductRepository.getInstance();
-		ArrayList<Product> listOfProducts = dto.getAllProducts();
-	%>
-	
 	<div class="container">
 		<div class="row" align="center">
+			<%@ include file="dbconn.jsp" %>
 			<%
-				for(int i=0; i<listOfProducts.size(); i++) {
-					Product product = listOfProducts.get(i);
+				PreparedStatement pstmt = null;
+				ResultSet rs = null;
+				
+				String sql = "select * from product";
+				pstmt = conn.prepareStatement(sql);
+				rs = pstmt.executeQuery();
+				while(rs.next()) {
 			%>
 			<div class="col-md-4">
-				<img src="/Upload/<%=product.getFilename() %>" style="width: 100%">
-			
-				<!-- img src="./resources/images/<%=product.getFilename() %>" style="width: 100%" -->
+				<img src="/Upload/<%=rs.getString("p_fileName") %>" style="width: 100%">
 				
-				<h3><%=product.getPname() %></h3>
-				<p><%=product.getDescription() %>
-				<p><fmt:formatNumber value="<%=product.getUnitPrice() %>" type="number" /> 원
-				<p> <a href="./product.jsp?id=<%=product.getProductId() %>" class="btn btn-secondary" role="button"> 상세 정보 &raquo;</a>
+				<h3><%=rs.getString("p_name") %></h3>
+				<p><%=rs.getString("p_description") %>
+				<p><fmt:formatNumber value="<%=rs.getString(\"p_unitPrice\") %>" type="number" /> 원
+				<p> <a href="./product.jsp?id=<%=rs.getString("p_id") %>" class="btn btn-secondary" role="button"> 상세 정보 &raquo;</a>
 			</div>
 			<%
 				}
-			%>
+		
+			if(rs != null)
+				rs.close();
+			if(pstmt != null)
+				pstmt.close();
+			if(conn != null)
+				conn.close();
+			%>	
 		</div>
 		<hr>
 	</div>

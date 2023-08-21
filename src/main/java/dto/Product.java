@@ -6,16 +6,16 @@ public class Product implements Serializable {
 	
 	private static final long serialVersionUID = -4274700572038677000L;
 	
-	private String productId;		// 상품 아이디
-	private String pname;			// 상품명
-	private Integer unitPrice;		// 상품 가격
-	private String description;		// 상품 설명
-	private String manufacturer;	// 제조사
-	private String category;		// 분류
-	private long unitsInStock;		// 재고 수
-	private String condition;		// 신상품 or 중고품 or 재생품
-	private String filename;		// 이미지 파일명
-	private int quantity;			// 장바구니에 담은 개수
+	private String productId;
+	private String pname;
+	private Integer unitPrice;
+	private String description;
+	private String manufacturer;
+	private String category;
+	private long unitsInStock;
+	private String condition;
+	private String filename;
+	private int quantity;
 
 	public Product() {
 		super();
